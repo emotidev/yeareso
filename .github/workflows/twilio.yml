@@ -1,0 +1,25 @@
+# Write a github action that runs the scripts/twilio.js file using node every day, with env variables
+
+name: Twilio
+on:
+  schedule:
+    - cron: '0 6 1 1 *'
+  workflow_dispatch:
+jobs:
+  twilio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: yarn install
+      - name: Run Twilio
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
+          COCKROACHDB: ${{ secrets.COCKROACHDB }}
+        run: node scripts/twilio.js

@@ -1,68 +1,57 @@
-# Next.js and Auth0 Example
+# 🎆 Yeareso 🎆
 
-This example shows how you can use `@auth0/nextjs-auth` to easily add authentication support to your Next.js application. It tries to cover a few topics:
+## 🫣 Initial Peek 🫣
 
-- Signing in
-- Signing out
-- Loading the user on the server side and adding it as part of SSR ([`pages/advanced/ssr-profile.tsx`](pages/advanced/ssr-profile.tsx))
-- Loading the user on the client side and using fast/cached SSR pages ([`pages/index.tsx`](pages/index.tsx))
-- Loading the user on the client side and checking authentication CSR pages ([`pages/profile.tsx`](pages/profile.tsx))
-- Loading the user on the client side by accessing API (Serverless function) CSR pages ([`pages/advanced/api-profile.tsx`](pages/advanced/api-profile.tsx))
-- Creates route handlers under the hood that perform different parts of the authentication flow ([`pages/auth/[...auth0].tsx`](pages/auth/[...auth0].tsx))
+![](https://devpost.com/f354c724-bc41-4497-ad33-c039f2894193)
+![](https://devpost.com/96892136-ecb7-4011-84f7-8cf03bdc0887)
+![](https://devpost.com/9df43b37-c223-47d8-bbdc-a0c8dfa4e109)
+![](https://devpost.com/2970434b-5209-4c88-953c-dd4e3ce9e09d)
 
-Read more: [https://auth0.com/blog/ultimate-guide-nextjs-authentication-auth0/](https://auth0.com/blog/ultimate-guide-nextjs-authentication-auth0/)
+## 🎊 Your New Year's Resolution Tracker 🎊
 
-## How to use
+We built Yeareso as part of Hacky New Year, a hackathon focused on building projects that help people stay on track with their New Year's resolutions. We wanted to create a platform that would not only help people set and track their resolutions, but also provide them with the support and accountability they need to actually achieve their goals.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## 💪 Inspiration 💪
 
-```bash
-npx create-next-app --example auth0 auth0-app
-```
+We know firsthand how difficult it can be to stick to resolutions, especially as the year goes on and life gets in the way. That's why we were inspired to create Yeareso - to provide a supportive community and helpful tools for people who are committed to making positive changes in their lives.
 
-```bash
-yarn create next-app --example auth0 auth0-app
-```
+## 🚀 What it does 🚀
 
-```bash
-pnpm create next-app --example auth0 auth0-app
-```
+Yeareso is an app that helps users set and track their New Year's resolutions. When a user signs up, they can create a resolution and set a progress goal. They can then track their progress and update their resolution as they go.
 
-## Configuring Auth0
+But Yeareso isn't just a simple progress tracker - it also provides users with a community of like-minded individuals who are working towards their own resolutions. Users can connect with each other, share their progress, and offer encouragement and support.
 
-1. Go to the [Auth0 dashboard](https://manage.auth0.com/) and create a new application of type _Regular Web Applications_ and make sure to configure the following
-2. Go to the settings page of the application
-3. Configure the following settings:
+## 🛠 How we built it 🛠
 
-- _Allowed Callback URLs_: Should be set to `http://localhost:3000/api/auth/callback` when testing locally or typically to `https://myapp.com/api/auth/callback` when deploying your application.
-- _Allowed Logout URLs_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application.
+Yeareso is built with Next.js for the frontend and CockroachDB and Prisma for the backend. We used Auth0 for authentication and Twilio for SMS reminders to help users stay on track with their resolutions.
 
-4. Save the settings
+Yearso has made smart use of already available technologies. Yearso uses GitHub actions to run a script that sends a text message to the user every day at 6am. This is a great way to remind the user to check in on their progress. Yearso also uses Auth0 to authenticate users. This is a great way to ensure that only the user can access their data. Yearso also uses Prisma to connect to the database. This is a great way to ensure that the database is secure and that the data is not lost.
 
-### Set up environment variables
+## 📈 Challenges we ran into 📈
 
-To connect the app with Auth0, you'll need to add the settings from your Auth0 application as environment variables
+We ran into a lot of challenges while building Yeareso. We had to learn how to use CockroachDB, Prisma, Auth0, and Twilio.
 
-Copy the `.env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
+The most challenging part of the project was figuring out how to use CockroachDB and Prisma together to create/update user based on the current state of the DB without making our application a memory hogger. After many hours of research and trial and error, we were able to figure out a solution that worked. The `upsert` function in prisma. Weird name, but it does exactly what we needed it to do.
 
-```bash
-cp .env.local.example .env.local
-```
+Weird names didn't leave us there, the login ui for Auth0 was apparently called a API, which snapped a lot of our time in just figuring out the UI before we occasionally found the endpoint.
 
-Then, open `.env.local` and add the missing environment variables:
+We also faced a lot of challenges with the Twilio API. We had to figure out how to send a text message to a user every day at 6am. We decided to use GitHub actions to run a script that sends a text message to the user every day at 6am. This is a great way to remind the user to check in on their progress.
 
-- `AUTH0_ISSUER_BASE_URL` - Can be found in the Auth0 dashboard under `settings`. (Should be prefixed with `https://`)
-- `AUTH0_CLIENT_ID` - Can be found in the Auth0 dashboard under `settings`.
-- `AUTH0_CLIENT_SECRET` - Can be found in the Auth0 dashboard under `settings`.
-- `AUTH0_BASE_URL` - The base url of the application.
-- `AUTH0_SECRET` - Has to be at least 32 characters. You can use [this generator](https://generate-secret.vercel.app/32) to generate a value.
+## 🏆 Accomplishments that we're proud of 🏆
 
-## Deploy on Vercel
+We're proud of the fact that we were able to build a fully functional app in just 48 hours. We're also proud of the fact that we were able to learn how to use CockroachDB, Prisma, Auth0, and Twilio.
 
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## 📚 What we learned 📚
 
-### Deploy Your Local Project
+We learned how to use CockroachDB, Prisma, Auth0, and Twilio.
 
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
+We learned how to think out of the box and use tools differently than they were intended to be used. Just like how we used github action as a scheduling service instead of a CI/CD service.
 
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
+## 🚧 What's next for Yeareso 🚧
+
+We plan to add more features to Yeareso, including:
+- A calendar that shows the user's progress over time
+- A leaderboard that shows the user's progress compared to other users
+- A way for users to connect with each other and share their progress
+
+We plan to make Yearso also available as a mobile app in the soon future.
